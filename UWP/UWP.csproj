@@ -111,12 +111,6 @@
     <Compile Include="UWPRenderExtentions.cs" />
     <Compile Include="UWPSpannableTextBlock.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Zebble.UWP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Projects\Zebble\lib\Zebble.UWP.dll</HintPath>
-    </Reference>
-  </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
