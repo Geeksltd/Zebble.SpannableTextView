@@ -1,7 +1,7 @@
 ﻿{
   "dependencies": {
-    "HtmlAgilityPack": "1.6.11",
-    "Zebble": "4.2.374"
+    "HtmlAgilityPack": "1.6.12",
+    "Zebble": "4.2.375"
   },
   "frameworks": {
     "uap10.0.10240": {}
