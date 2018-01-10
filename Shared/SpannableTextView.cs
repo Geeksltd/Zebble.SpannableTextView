@@ -21,21 +21,20 @@
                 spannableText = value;
                 var spannableString = new SpannableString(spannableText);
                 ParsedText = spannableString.ParseText();
-                Text = spannableString.Stripedtext;
-
+                text = spannableString.Stripedtext;
                 SpannableTextChanged.Raise();
             }
         }
 
-        protected override float CalculateAutoHeight()
-        {
-            float currentHeight;
-            currentHeight = base.CalculateAutoHeight();
+        //protected override float CalculateAutoHeight()
+        //{
+        //    float currentHeight;
+        //    currentHeight = base.CalculateAutoHeight();
 
-            if (ParsedText != null && ParsedText.Count > 0) currentHeight = CalculateSpannableTextAutoHeight();
+        //    if (ParsedText != null && ParsedText.Count > 0) currentHeight = CalculateSpannableTextAutoHeight();
 
-            return currentHeight;
-        }
+        //    return currentHeight;
+        //}
 
         float CalculateSpannableTextAutoHeight()
         {
@@ -46,10 +45,13 @@
             var linesCount = (int)Font.GetTextWidth(text) / textViewWidth;
             var allStyles = ParsedText.Flatten((style, except) => style.Children.Except(except));
 
-            for (int i = 1; i <= linesCount; i++)
+            for (var i = 1; i <= linesCount; i++)
             {
-                var maximumFontSize = allStyles.Where(s => s.Range.Start <= (numberOfCharachterInLine.Round(0) * i) && s.Parameters != null)
-                    .Select(f => f.Parameters.SingleOrDefault(p => p.Key == SpannableStringParameterTypes.Size)).Max(f => Convert.ToDouble(f.Value));
+                var maximumFontSize = allStyles
+                    .Where(s => s.Range.Start <= (numberOfCharachterInLine.Round(0) * i) && s.Parameters != null)
+                    .Select(f => Convert.ToDouble(f.Parameters.SingleOrDefault(p => p.Key == SpannableStringParameterTypes.Size).Value))
+                    .DefaultIfEmpty(0)
+                    .Max(f => f);
                 var lineHeight = new Font(Font.Name, maximumFontSize == 0 ? Font.EffectiveSize : (float)maximumFontSize).GetLineHeight();
 
                 if (LineHeight.HasValue) lineHeight += LineHeight.Value;

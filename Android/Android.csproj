@@ -61,9 +61,6 @@
     <Compile Include="AndroidRenderExtentions.cs" />
     <Compile Include="SpannableAndroidTextView.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Zebble.exe" />
-  </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
