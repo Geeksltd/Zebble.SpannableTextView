@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "HtmlAgilityPack": "1.6.12",
+    "HtmlAgilityPack": "1.6.13",
     "Zebble": "4.2.375"
   },
   "frameworks": {
