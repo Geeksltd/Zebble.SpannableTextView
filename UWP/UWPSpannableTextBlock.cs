@@ -10,7 +10,7 @@ namespace Zebble.UWP
         {
             View = renderer.View as SpannableTextView;
 
-            View.SpannableTextChanged.HandleActionOn(Device.UIThread, RenderSpannableText);
+            View.SpannableTextChanged.HandleActionOn(Thread.UI, RenderSpannableText);
 
             RenderSpannableText();
         }

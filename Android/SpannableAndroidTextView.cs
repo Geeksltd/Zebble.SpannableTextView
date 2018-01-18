@@ -8,7 +8,7 @@
         {
             View = view;
 
-            view.SpannableTextChanged.HandleActionOn(Device.UIThread, RenderSpannableText);
+            view.SpannableTextChanged.HandleActionOn(Thread.UI, RenderSpannableText);
 
             RenderSpannableText();
         }
