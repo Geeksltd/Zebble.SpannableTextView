@@ -1,6 +1,28 @@
-## SpannableTextView
-SpannableTextView is a TextView for Zebble application which make you able to add different style to a TextView like bold, italic, fontColor and fontSize by adding some style tags into your text. This plugin implemented for Android, IOS and UWP Zebble applications and it is available on NuGet.
-### How to use SpannableTextView in Zebble?
+[logo]: https://raw.githubusercontent.com/Geeksltd/Zebble.SpannableTextView/master/Shared/NuGet/Icon.png "Zebble.SpannableTextView"
+
+
+## Zebble.SpannableTextView
+
+![logo]
+
+A Zebble plugin to set different style to a TextView in Zebble applications.
+
+[![NuGet](https://img.shields.io/nuget/v/Zebble.SpannableTextView.svg?label=NuGet)](https://www.nuget.org/packages/Zebble.SpannableTextView/)
+
+> SpannableTextView is a TextView for Zebble application which make you able to add different style to a TextView like bold, italic, fontColor and fontSize by adding some style tags into your text. This plugin implemented for Android, IOS and UWP Zebble applications and it is available on NuGet.
+
+<br>
+
+
+### Setup
+* Available on NuGet: [https://www.nuget.org/packages/Zebble.SpannableTextView/](https://www.nuget.org/packages/Zebble.SpannableTextView/)
+* Install in your platform client projects.
+* Available for iOS, Android and UWP.
+<br>
+
+
+### Api Usage
+
 To use SpannableTextView into your Zebble application you need to install it from NuGet for all of platforms that you need. After that, you need to add this element to your Zebble page or code behind and set the SpannableText property of it like the code which mentioned below:
 ```csharp
 MySpannableTextView.SpannableText = "<b>Lorem</b> <i>ipsum</i> <font color='#ffffff'>dolor<font color='red'>sit</font> " +
@@ -9,7 +31,7 @@ MySpannableTextView.SpannableText = "<b>Lorem</b> <i>ipsum</i> <font color='#fff
 "consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat " +
 "cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est <b><i>laborum</i></b>.";
 ```
-### Supported HTML tags
+#### Supported HTML tags
 
 * ``<b>``
 * ``<bold>``
@@ -17,7 +39,7 @@ MySpannableTextView.SpannableText = "<b>Lorem</b> <i>ipsum</i> <font color='#fff
 * ``<italic>``
 * ``<font size=”” color=”” >``
 
-### Examples
+#### Examples
 
 For using in Zebble pages:
 ```xml
@@ -43,3 +65,20 @@ public async override Task OnInitializing()
     MySpannableTextView.SpannableText = "<b>This</b> <i><font color='red'>is</font></i> a <font size='50' color='green'>sample <bold>text</bold></font>.";
 }
 ```
+<br>
+
+
+### Properties
+| Property     | Type         | Android | iOS | Windows |
+| :----------- | :----------- | :------ | :-- | :------ |
+| SpannableText           | string          | x       | x   | x       |
+
+
+
+<br>
+
+
+### Events
+| Event             | Type                                          | Android | iOS | Windows |
+| :-----------      | :-----------                                  | :------ | :-- | :------ |
+| SpannableTextChanged            | AsyncEvent    | x       | x   | x       |
