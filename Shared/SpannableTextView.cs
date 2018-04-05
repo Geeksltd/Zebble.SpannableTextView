@@ -108,22 +108,46 @@
             };
         }
 
-        void ParseTags(HtmlNodeCollection children, SpannableStringStyle parent = null)
+        void ParseTags(HtmlNodeCollection children, SpannableStringStyle parentStyle = null, HtmlNode parentNode = null)
         {
+            var inputText = InputText;
+            if (parentNode != null)
+            {
+                var builder = new System.Text.StringBuilder(inputText);
+                var index = inputText.IndexOf(parentNode.OuterHtml);
+                builder.Remove(index, parentNode.OuterHtml.Length);
+                builder.Insert(index, parentNode.InnerHtml);
+                inputText = builder.ToString();
+            }
+
             foreach (var node in children)
             {
-                var startIndex = Stripedtext.IndexOf(node.InnerText);
+                var startIndex = inputText.IndexOf(node.OuterHtml);
+
+                var previousString = inputText.Substring(0, startIndex);
+                if (Regex.IsMatch(previousString, "<(\\s*[(\\/?)\\w+]*)"))
+                {
+                    inputText = inputText.Replace(previousString, StripHTML(previousString));
+                }
+
+                startIndex = inputText.IndexOf(node.OuterHtml);
                 var range = new SpannableStringRange(startIndex, startIndex + node.InnerText.Length);
                 var style = ExtractStyle(node, range);
+
+                var strBuilder = new System.Text.StringBuilder(inputText);
+                strBuilder.Remove(startIndex, node.OuterHtml.Length);
+                strBuilder.Insert(startIndex, node.InnerText);
+                inputText = strBuilder.ToString();
+
 
                 if (node.ChildNodes.Count > 0 && node.ChildNodes.Count(n => AcceptedTags.Any(at => at.ToLower() == n.Name)) > 0)
                 {
                     style.InnerText = "";
-                    ParseTags(node.ChildNodes, style);
+                    ParseTags(node.ChildNodes, style, node);
                 }
 
-                if (parent == null) ParsedItems.Add(style);
-                else parent.Children.Add(style);
+                if (parentStyle == null) ParsedItems.Add(style);
+                else parentStyle.Children.Add(style);
             }
         }
 
