@@ -17,7 +17,7 @@
             get => spannableText;
             set
             {
-                if (spannableText == value) return;
+                if (spannableText == value && Text == value) return;
                 spannableText = value;
                 var spannableString = new SpannableString(spannableText);
                 ParsedText = spannableString.ParseText();
