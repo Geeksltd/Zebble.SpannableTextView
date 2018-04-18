@@ -21,7 +21,7 @@
                 spannableText = value;
                 var spannableString = new SpannableString(spannableText);
                 ParsedText = spannableString.ParseText();
-                text = spannableString.Stripedtext;
+                Text = spannableString.Stripedtext;
                 SpannableTextChanged.Raise();
             }
         }
