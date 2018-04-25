@@ -1,8 +1,8 @@
 ﻿{
   "dependencies": {
-    "HtmlAgilityPack": "1.6.13",
-    "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.6",
-    "Zebble": "4.3.100"
+    "HtmlAgilityPack": "1.8.1",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.8",
+    "Zebble": "4.4.107"
   },
   "frameworks": {
     "uap10.0.10240": {}
