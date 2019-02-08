@@ -17,6 +17,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpannableString.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpannableStringParameterTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpannableStringRange.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpannableStringStyle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpannableStringTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SpannableTextView.cs" />
   </ItemGroup>
 </Project>

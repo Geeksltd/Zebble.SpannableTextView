@@ -43,6 +43,5 @@ namespace Zebble.UWP
                 parent.Inlines.Add(element);
             }
         }
-
     }
 }
