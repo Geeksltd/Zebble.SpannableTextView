@@ -2,11 +2,11 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Zebble.SpannableTextView</id>
-    <version>1.1.120</version>
+    <version>1.0.106</version>
     <title>SpannableTextView for Zebble (Xamarin)</title>
     <projectUrl>https://github.com/Geeksltd/Zebble.SpannableTextView</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/Geeksltd/Zebble.SpannableTextView/master/Shared/NuGet/Icon.png</iconUrl>
-    <copyright>Copyright © 2018 Geeks Ltd - All rights reserved.</copyright>
+    <copyright>Copyright © 2019 Geeks Ltd - All rights reserved.</copyright>
     <description>SpannableTextView is an extended Zebble TextView that is able to render simple markups such color and bold tags.</description>
     <authors>Geeks Ltd</authors>
     <owners>Geeks Ltd</owners>
