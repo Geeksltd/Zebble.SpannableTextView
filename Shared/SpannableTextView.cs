@@ -48,5 +48,13 @@
 
             return textViewHeight;
         }
+
+        public override void Dispose()
+        {
+            SpannableTextChanged?.Dispose();
+            ParsedText?.Clear();
+            ParsedText = null;
+            base.Dispose();
+        }
     }
 }

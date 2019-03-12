@@ -39,5 +39,11 @@
                 if (style.Children.Count > 0) RenderChildSpannableStyle(text, style);
             }
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            View = null;
+            base.Dispose(disposing);
+        }
     }
 }
