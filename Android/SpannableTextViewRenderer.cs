@@ -16,6 +16,10 @@
             return Result;
         }
 
-        public void Dispose() => Result.Dispose();
+        public void Dispose()
+        {
+            Result?.Dispose();
+            Result = null;
+        }
     }
 }
