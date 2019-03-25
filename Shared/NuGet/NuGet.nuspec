@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Zebble.SpannableTextView</id>
-    <version>1.0.110</version>
+    <version>1.0.121</version>
     <title>SpannableTextView for Zebble (Xamarin)</title>
     <projectUrl>https://github.com/Geeksltd/Zebble.SpannableTextView</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/Geeksltd/Zebble.SpannableTextView/master/Shared/NuGet/Icon.png</iconUrl>
