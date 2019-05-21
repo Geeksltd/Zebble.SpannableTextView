@@ -1,5 +1,6 @@
 ﻿namespace Zebble
 {
+    using Android.Runtime;
     using System.Threading.Tasks;
     using Zebble.AndroidOS;
 
@@ -8,12 +9,15 @@
         SpannableTextView View;
         SpannableAndroidTextView Result;
 
-        async Task<Android.Views.View> INativeRenderer.Render(Renderer render)
+        [Preserve]
+        public SpanableTextViewRenderer() { }
+
+        public Task<Android.Views.View> Render(Renderer render)
         {
             View = (SpannableTextView)render.View;
             Result = new SpannableAndroidTextView(View);
 
-            return Result;
+            return Task.FromResult((Android.Views.View)Result);
         }
 
         public void Dispose()
