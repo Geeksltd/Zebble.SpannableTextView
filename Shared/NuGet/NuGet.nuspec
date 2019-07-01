@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Zebble.SpannableTextView</id>
-    <version>1.2.123</version>
+    <version>1.2.124</version>
     <title>SpannableTextView for Zebble (Xamarin)</title>
     <projectUrl>https://github.com/Geeksltd/Zebble.SpannableTextView</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/Geeksltd/Zebble.SpannableTextView/master/Shared/NuGet/Icon.png</iconUrl>
@@ -25,8 +25,6 @@
   <files>
     <file src="..\..\lib\Zebble.SpannableTextView.iOS.*" target="lib\Xamarin.iOS10\" />
     <file src="..\..\lib\Zebble.SpannableTextView.Android.*" target="lib\MonoAndroid10\" />
-
-
     <file src="..\..\lib\bin\ARM\Release\Zebble.SpannableTextView.UWP.*" target="runtimes\win10-arm\lib\uap10.0" />
     <file src="..\..\lib\bin\x64\Release\Zebble.SpannableTextView.UWP.*" target="runtimes\win10-x64\lib\uap10.0" />
     <file src="..\..\lib\bin\x86\Release\Zebble.SpannableTextView.UWP.*" target="runtimes\win10-x86\lib\uap10.0" />
