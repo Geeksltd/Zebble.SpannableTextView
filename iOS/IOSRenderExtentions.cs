@@ -29,8 +29,11 @@
                             case SpannableStringParameterTypes.Size:
                                 if (float.TryParse(parameter.Value, out float fontSize))
                                 {
-                                    attributedString.AddAttribute(UIStringAttributeKey.Font, UIFont.FromName(view.Font.Name,
-                                        fontSize), new NSRange(style.Range.Start, styleTextLength));
+                                    var font = UIFont.FromName(view.Font.Name, fontSize);
+                                    var size = new NSRange(style.Range.Start, styleTextLength);
+                                    if (font == null)
+                                        break;
+                                    attributedString.AddAttribute(UIStringAttributeKey.Font, font, size);
                                 }
 
                                 break;
