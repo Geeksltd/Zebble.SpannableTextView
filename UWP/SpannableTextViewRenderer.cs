@@ -9,12 +9,12 @@
         SpannableTextView View;
         UWPSpannableTextBlock Result;
 
-        async Task<FrameworkElement> INativeRenderer.Render(Renderer renderer)
+        Task<FrameworkElement> INativeRenderer.Render(Renderer renderer)
         {
             View = (SpannableTextView)renderer.View;
             Result = new UWPSpannableTextBlock(renderer);
 
-            return Result.Render();
+            return Result.Render(renderer);
         }
 
         public void Dispose() { }

@@ -6,7 +6,7 @@ namespace Zebble.UWP
     {
         SpannableTextView View;
 
-        public UWPSpannableTextBlock(Renderer renderer) : base(renderer)
+        public UWPSpannableTextBlock(Renderer renderer) : base(renderer.View as SpannableTextView)
         {
             View = renderer.View as SpannableTextView;
 
