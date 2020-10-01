@@ -2,11 +2,10 @@
 {
     using Android.Graphics;
     using System;
-    using Zebble.AndroidOS;
 
     public static class AndroidRenderExtentions
     {
-        internal static void RenderSpannableStringStyle(this Zebble.SpannableStringStyle style, Android.Text.SpannableString text)
+        internal static void RenderSpannableStringStyle(this SpannableStringStyle style, Android.Text.SpannableString text)
         {
             switch (style.Type)
             {
@@ -23,10 +22,10 @@
                     {
                         switch (parameter.Key)
                         {
-                            case Zebble.SpannableStringParameterTypes.Size:
+                            case SpannableStringParameterTypes.Size:
                                 if (float.TryParse(parameter.Value, out float fontSize))
                                 {
-                                    text.SetSpan(new Android.Text.Style.AbsoluteSizeSpan(Scaler.ToDevice(fontSize), true),
+                                    text.SetSpan(new Android.Text.Style.AbsoluteSizeSpan(Device.Scale.ToDevice(fontSize), true),
                                         style.Range.Start, style.Range.Length, Android.Text.SpanTypes.ExclusiveExclusive);
                                 }
 
