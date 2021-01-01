@@ -7,7 +7,7 @@
     <RootNamespace>Zebble</RootNamespace>
     <PackageId>Zebble.SpannableTextView</PackageId>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
-    <Version>1.2.138</Version>
+    <Version>1.2.139.0</Version>
     <PackOnBuild>true</PackOnBuild>
     <NeutralLanguage>en</NeutralLanguage>
     <LangVersion>default</LangVersion>
@@ -69,7 +69,7 @@
     <PackageReference Include="Zebble" Version="4.5.423" />
   </ItemGroup>
   <ItemGroup>
-	<Folder Include="Android\" />
-	<Folder Include="iOS\" />
+    <Folder Include="Android\" />
+    <Folder Include="iOS\" />
   </ItemGroup>
 </Project>
