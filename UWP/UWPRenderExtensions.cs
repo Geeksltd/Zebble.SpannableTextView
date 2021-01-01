@@ -1,11 +1,11 @@
 ﻿namespace Zebble.UWP
 {
-    using System;
     using Windows.UI.Text;
     using doc = Windows.UI.Xaml.Documents;
     using media = Windows.UI.Xaml.Media;
+    using Olive;
 
-    public static class UWPRenderExtentions
+    public static class UWPRenderExtensions
     {
         internal static doc.Span RenderSpannableStringStyle(this SpannableStringStyle style)
         {

@@ -1,4 +1,4 @@
-[logo]: https://raw.githubusercontent.com/Geeksltd/Zebble.SpannableTextView/master/Shared/NuGet/Icon.png "Zebble.SpannableTextView"
+ï»¿[logo]: https://raw.githubusercontent.com/Geeksltd/Zebble.SpannableTextView/master/icon.png "Zebble.SpannableTextView"
 
 
 ## Zebble.SpannableTextView
@@ -37,7 +37,7 @@ MySpannableTextView.SpannableText = "<b>Lorem</b> <i>ipsum</i> <font color='#fff
 * ``<bold>``
 * ``<i>``
 * ``<italic>``
-* ``<font size=”” color=”” >``
+* ``<font size=ï¿½ï¿½ color=ï¿½ï¿½ >``
 
 #### Examples
 
