@@ -8,18 +8,16 @@
     {
         internal static void RenderSpannableStringStyle(this SpannableStringStyle style, TextView view, NSMutableAttributedString attributedString)
         {
-            var styleTextLength = Math.Abs(style.Range.Start - style.Range.Length);
+            var range = new NSRange(style.Range.Start, style.Range.Length);
             switch (style.Type)
             {
                 case SpannableStringTypes.B:
                 case SpannableStringTypes.Bold:
-                    attributedString.AddAttribute(UIStringAttributeKey.Font, UIFont.BoldSystemFontOfSize(view.Font.Size),
-                        new NSRange(style.Range.Start, styleTextLength));
+                    attributedString.AddAttribute(UIStringAttributeKey.Font, UIFont.BoldSystemFontOfSize(view.Font.Size), range);
                     break;
                 case SpannableStringTypes.I:
                 case SpannableStringTypes.Italic:
-                    attributedString.AddAttribute(UIStringAttributeKey.Font, UIFont.ItalicSystemFontOfSize(view.Font.Size),
-                        new NSRange(style.Range.Start, styleTextLength));
+                    attributedString.AddAttribute(UIStringAttributeKey.Font, UIFont.ItalicSystemFontOfSize(view.Font.Size), range);
                     break;
                 case SpannableStringTypes.Font:
                     foreach (var parameter in style.Parameters)
@@ -27,27 +25,19 @@
                         switch (parameter.Key)
                         {
                             case SpannableStringParameterTypes.Size:
-                                if (float.TryParse(parameter.Value, out float fontSize))
-                                {
-                                    var font = UIFont.FromName(view.Font.Name, fontSize);
-                                    var size = new NSRange(style.Range.Start, styleTextLength);
-                                    if (font == null)
-                                        break;
-                                    attributedString.AddAttribute(UIStringAttributeKey.Font, font, size);
-                                }
-
+                                if (!float.TryParse(parameter.Value, out float fontSize)) break;
+                                var font = UIFont.FromName(view.Font.Name, fontSize);
+                                if (font == null) break;
+                                attributedString.AddAttribute(UIStringAttributeKey.Font, font, range);
                                 break;
                             case SpannableStringParameterTypes.Color:
-                                attributedString.AddAttribute(UIStringAttributeKey.ForegroundColor, Color.Parse(parameter.Value).Render(),
-                                    new NSRange(style.Range.Start, styleTextLength));
+                                attributedString.AddAttribute(UIStringAttributeKey.ForegroundColor, Color.Parse(parameter.Value).Render(), range);
                                 break;
-                            case SpannableStringParameterTypes.Face:
-                                // TODO implement font faces.
-                                break;
+                            // TODO implement font faces.
+                            // case SpannableStringParameterTypes.Face: break;
                             default: break;
                         }
                     }
-
                     break;
                 default: break;
             }

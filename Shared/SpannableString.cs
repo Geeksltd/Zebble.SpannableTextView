@@ -11,7 +11,7 @@
     {
         string InputText = string.Empty;
         public string Stripedtext = string.Empty;
-        readonly List<SpannableStringStyle> ParsedItems = new List<SpannableStringStyle>();
+        readonly List<SpannableStringStyle> ParsedItems = new();
 
         List<string> AcceptedTags => Enum.GetNames(typeof(SpannableStringTypes)).ToList();
 
@@ -75,8 +75,7 @@
                     inputText = inputText.Replace(previousString, StripHTML(previousString));
                 }
 
-                startIndex = inputText.IndexOf(node.OuterHtml);
-                var range = new SpannableStringRange(startIndex, startIndex + node.InnerText.Length);
+                var range = new SpannableStringRange(startIndex, node.InnerText.Length);
                 var style = ExtractStyle(node, range);
 
                 var strBuilder = new System.Text.StringBuilder(inputText);
@@ -84,7 +83,7 @@
                 strBuilder.Insert(startIndex, node.InnerText);
                 inputText = strBuilder.ToString();
 
-                if (node.ChildNodes.Count > 0 && node.ChildNodes.Count(n => AcceptedTags.Any(at => at.ToLower() == n.Name)) > 0)
+                if (node.ChildNodes.Any() && node.ChildNodes.Any(n => AcceptedTags.Any(at => at.ToLower() == n.Name)))
                 {
                     style.InnerText = "";
                     ParseTags(node.ChildNodes, style, node);
