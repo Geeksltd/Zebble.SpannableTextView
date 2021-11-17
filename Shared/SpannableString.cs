@@ -43,13 +43,13 @@
 
         SpannableStringStyle ExtractStyle(HtmlNode node, SpannableStringRange range)
         {
-            var isCorrecttype = Enum.TryParse(node.Name.CapitaliseFirstLetters(), out SpannableStringTypes type);
+            var isCorrectType = Enum.TryParse(node.Name.CapitaliseFirstLetters(), out SpannableStringTypes type);
             return new SpannableStringStyle
             {
                 InnerText = node.InnerText,
                 Parameters = node.Name.ToLower() == "font" ? ExtractFontParameters(node.Attributes) : null,
                 Range = range,
-                Type = isCorrecttype ? type : SpannableStringTypes.PlainText
+                Type = isCorrectType ? type : SpannableStringTypes.PlainText
             };
         }
 

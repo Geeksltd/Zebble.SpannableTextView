@@ -1,4 +1,6 @@
-﻿namespace Zebble
+﻿using Olive;
+
+namespace Zebble
 {
     public class SpannableStringRange
     {
@@ -8,8 +10,8 @@
 
         public SpannableStringRange(int start, int length)
         {
-            Start = start;
-            Length = length;
+            Start = start.LimitMin(0);
+            Length = length.LimitMin(0);
         }
 
         public override string ToString() => $"[{Start}, {End} ({Length})]";
