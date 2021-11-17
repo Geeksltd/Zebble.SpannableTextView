@@ -71,4 +71,7 @@
     <Folder Include="Android\" />
     <Folder Include="iOS\" />
   </ItemGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="update-local-nuget-cache $(TargetDir)" />
+  </Target>
 </Project>
