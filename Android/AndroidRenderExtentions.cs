@@ -1,11 +1,12 @@
 ﻿namespace Zebble
 {
     using Android.Graphics;
+    using Android.Text.Style;
     using System;
 
     public static class AndroidRenderExtentions
     {
-        internal static void RenderSpannableStringStyle(this SpannableStringStyle style, Android.Text.SpannableString text)
+        internal static void RenderSpannableStringStyle(this SpannableStringStyle style, Android.Text.SpannableString text, SpannableTextView view)
         {
             switch (style.Type)
             {
@@ -40,10 +41,30 @@
                             default: break;
                         }
                     }
-
+                    break;
+                case SpannableStringTypes.A:
+                    var x = new XX(view, style.InnerText);
+                    text.SetSpan(x, style.Range.Start, style.Range.End, Android.Text.SpanTypes.ExclusiveExclusive);
                     break;
                 default: break;
             }
+        }
+    }
+
+    class XX : ClickableSpan
+    {
+        readonly SpannableTextView View;
+        readonly string Text;
+
+        public XX(SpannableTextView view, string text)
+        {
+            View = view;
+            Text = text;
+        }
+
+        public override void OnClick(Android.Views.View widget)
+        {
+            View.LinkTapped.Raise(new EventArgs<string>(Text));
         }
     }
 }

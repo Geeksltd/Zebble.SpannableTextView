@@ -1,4 +1,6 @@
-﻿namespace Zebble.AndroidOS
+﻿using Android.Text.Method;
+
+namespace Zebble.AndroidOS
 {
     public class SpannableAndroidTextView : AndroidTextView
     {
@@ -10,6 +12,10 @@
 
             view.SpannableTextChanged.HandleActionOn(Thread.UI, RenderSpannableText);
 
+            Clickable = true;
+            LinksClickable = true;
+            MovementMethod = LinkMovementMethod.Instance;
+
             RenderSpannableText();
         }
 
@@ -20,7 +26,7 @@
             var spannableText = new Android.Text.SpannableString(View.Text);
             foreach (var spannableStyle in View.ParsedText)
             {
-                spannableStyle.RenderSpannableStringStyle(spannableText);
+                spannableStyle.RenderSpannableStringStyle(spannableText, View);
 
                 if (spannableStyle.Children.Count > 0)
                     RenderChildSpannableStyle(spannableText, spannableStyle);
@@ -34,7 +40,7 @@
         {
             foreach (var style in parentStyle.Children)
             {
-                style.RenderSpannableStringStyle(text);
+                style.RenderSpannableStringStyle(text, View);
 
                 if (style.Children.Count > 0) RenderChildSpannableStyle(text, style);
             }

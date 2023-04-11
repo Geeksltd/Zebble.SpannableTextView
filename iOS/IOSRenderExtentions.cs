@@ -7,7 +7,7 @@
 
     public static class IOSRenderExtentions
     {
-        internal static void RenderSpannableStringStyle(this SpannableStringStyle style, TextView view, NSMutableAttributedString attributedString)
+        internal static void RenderSpannableStringStyle(this SpannableStringStyle style, SpannableTextView view, NSMutableAttributedString attributedString)
         {
             try
             {
@@ -41,6 +41,22 @@
                                 default: break;
                             }
                         }
+                        break;
+                    case SpannableStringTypes.A:
+                        attributedString.AddAttribute(
+                            UIStringAttributeKey.Link,
+                            NSUrl.FromString($"https://www.test.com/?value={style.InnerText}"),
+                            range);
+
+                        UIRuntime.OnOpenUrl.Handle(url =>
+                        {
+                            view.LinkTapped.Raise(new EventArgs<string>(url.ToString()));
+                        });
+
+                        UIRuntime.OnOpenUrlWithOptions.Handle(url =>
+                        {
+                            view.LinkTapped.Raise(new EventArgs<string>(url.ToString()));
+                        });
                         break;
                     default: break;
                 }

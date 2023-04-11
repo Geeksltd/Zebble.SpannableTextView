@@ -1,5 +1,6 @@
 ﻿namespace Zebble
 {
+    using System;
     using System.Collections.Generic;
     using Olive;
 
@@ -8,6 +9,8 @@
         string spannableText = string.Empty;
         internal List<SpannableStringStyle> ParsedText;
         public readonly AsyncEvent SpannableTextChanged = new AsyncEvent();
+
+        public readonly AsyncEvent<EventArgs<string>> LinkTapped = new();
 
         public string SpannableText
         {

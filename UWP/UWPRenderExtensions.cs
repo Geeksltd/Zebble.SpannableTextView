@@ -4,12 +4,18 @@
     using doc = Windows.UI.Xaml.Documents;
     using media = Windows.UI.Xaml.Media;
     using Olive;
+    using Windows.UI.Xaml.Documents;
 
     public static class UWPRenderExtensions
     {
-        internal static doc.Span RenderSpannableStringStyle(this SpannableStringStyle style)
+        internal static doc.Inline RenderSpannableStringStyle(this SpannableStringStyle style, SpannableTextView view)
         {
-            doc.Span result;
+            void Link_Invoked(ContentLink sender, ContentLinkInvokedEventArgs args)
+            {
+                view.LinkTapped.Raise(new System.EventArgs<string>(style.InnerText));
+            }
+
+            doc.Inline result;
             switch (style.Type)
             {
                 case SpannableStringTypes.B:
@@ -42,13 +48,28 @@
 
                     result = span;
                     break;
+                case SpannableStringTypes.A:
+                    var link = new doc.ContentLink();
+                    link.Invoked += Link_Invoked;
+                    link.Info = new ContentLinkInfo
+                    {
+                        DisplayText = style.InnerText
+                    };
+                    result = link;
+                    break;
                 default:
                     result = new doc.Span();
                     break;
             }
 
-            if (style.InnerText.HasValue()) result.Inlines.Add(new doc.Run { Text = style.InnerText });
+            if (style.InnerText.HasValue() && result is doc.Span spanResult)
+                spanResult.Inlines.Add(new doc.Run
+                {
+                    Text = style.InnerText,
+                });
+
             return result;
         }
+
     }
 }

@@ -22,10 +22,10 @@ namespace Zebble.UWP
             Result.Text = "";
             foreach (var spannableStyle in View.ParsedText)
             {
-                var element = spannableStyle.RenderSpannableStringStyle();
+                var element = spannableStyle.RenderSpannableStringStyle(View);
 
-                if (spannableStyle.Children.Count > 0)
-                    RenderChildSpannableStyle(element, spannableStyle);
+                if (spannableStyle.Children.Count > 0 && element is Span span)
+                    RenderChildSpannableStyle(span, spannableStyle);
 
                 Result.Inlines.Add(element);
             }
@@ -37,8 +37,8 @@ namespace Zebble.UWP
         {
             foreach (var style in parentStyle.Children)
             {
-                var element = style.RenderSpannableStringStyle();
-                if (style.Children.Count > 0) RenderChildSpannableStyle(element, style);
+                var element = style.RenderSpannableStringStyle(View);
+                if (style.Children.Count > 0 && element is Span span) RenderChildSpannableStyle(span, style);
 
                 parent.Inlines.Add(element);
             }
