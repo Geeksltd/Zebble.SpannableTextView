@@ -12,6 +12,8 @@ namespace Zebble.IOS
 
             view.SpannableTextChanged.HandleActionOn(Thread.UI, RenderSpannableText);
 
+            UserInteractionEnabled = true;
+
             RenderSpannableText();
         }
 
