@@ -47,16 +47,6 @@
                             UIStringAttributeKey.Link,
                             NSUrl.FromString($"https://www.test.com/?value={style.InnerText}"),
                             range);
-
-                        UIRuntime.OnOpenUrl.Handle(url =>
-                        {
-                            view.LinkTapped.Raise(new EventArgs<string>(url.ToString()));
-                        });
-
-                        UIRuntime.OnOpenUrlWithOptions.Handle(url =>
-                        {
-                            view.LinkTapped.Raise(new EventArgs<string>(url.ToString()));
-                        });
                         break;
                     default: break;
                 }
