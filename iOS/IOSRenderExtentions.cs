@@ -43,10 +43,7 @@
                         }
                         break;
                     case SpannableStringTypes.A:
-                        attributedString.AddAttribute(
-                            UIStringAttributeKey.Link,
-                            NSUrl.FromString($"https://www.test.com/?value={style.InnerText}"),
-                            range);
+                        attributedString.AddAttribute(UIStringAttributeKey.Link, new NSString(style.InnerText), range);
                         break;
                     default: break;
                 }

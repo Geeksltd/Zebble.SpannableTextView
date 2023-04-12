@@ -1,8 +1,5 @@
 ﻿using CoreGraphics;
-using CoreText;
 using Foundation;
-using System.Drawing;
-using System.Security.Policy;
 using System;
 using UIKit;
 
@@ -19,83 +16,84 @@ namespace Zebble.IOS
             view.SpannableTextChanged.HandleActionOn(Thread.UI, RenderSpannableText);
 
             UserInteractionEnabled = true;
+            Label.UserInteractionEnabled = true;
 
             RenderSpannableText();
         }
 
         public override bool PointInside(CGPoint point, UIEvent uievent)
         {
-            var superBool = base.PointInside(point, uievent);
+            var baseResult = base.PointInside(point, uievent);
 
-            var textContainer = new NSTextContainer(Bounds.Size);
+            var textContainer = new NSTextContainer(Label.Bounds.Size)
+            {
+                LineFragmentPadding = (nfloat)0.0,
+                LineBreakMode = Label.LineBreakMode,
+                MaximumNumberOfLines = (uint)Label.Lines
+            };
+
             var layoutManager = new NSLayoutManager();
-
-            textContainer.LineFragmentPadding = (nfloat)0.0;
-            textContainer.LineBreakMode = UILineBreakMode.CharacterWrap;
-            textContainer.MaximumNumberOfLines = 10;
-
             layoutManager.AddTextContainer(textContainer);
 
-            if (AttributedString == null)
+            if (Label.AttributedText == null)
             {
                 return false;
             }
 
-            var textStorage = new NSTextStorage(AttributedString.Value);
-            //textStorage.AddAttribute(UIStringAttributeKey.Font, !, NSMakeRange(0, attributedText.length));
+            var textStorage = new NSTextStorage(Label.AttributedText.Value);
+
+            textStorage.AddAttribute(UIStringAttributeKey.Font, Label.Font, new NSRange(0, Label.AttributedText.Value.Length));
             textStorage.AddLayoutManager(layoutManager);
+
             var locationOfTouchInLabel = point;
             var textBoundingBox = layoutManager.GetUsedRectForTextContainer(textContainer);
-            var alignmentOffset = 0.0;
+            double alignmentOffset;
 
-            //switch (this.Align)
-            //{
-            //    case MyEnum.left:
-            //    case MyEnum.natural:
-            //    case MyEnum.justified:
-            //        {
-            //            alignmentOffset = 0.0D;
-            //            break;
-            //        }
-            //    case MyEnum.center:
-            //        {
-            //            alignmentOffset = 0.5D;
-            //            break;
-            //        }
-            //    case MyEnum.right:
-            //        {
-            //            alignmentOffset = 1.0D;
-            //            break;
-            //        }
-            //    default:
-            //        {
-            //            fatalError();
-            //            break;
-            //        }
-            //}
+            switch (Label.TextAlignment)
+            {
+                case UITextAlignment.Left:
+                case UITextAlignment.Natural:
+                case UITextAlignment.Justified:
+                    {
+                        alignmentOffset = 0.0D;
+                        break;
+                    }
+                case UITextAlignment.Center:
+                    {
+                        alignmentOffset = 0.5D;
+                        break;
+                    }
+                case UITextAlignment.Right:
+                    {
+                        alignmentOffset = 1.0D;
+                        break;
+                    }
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(Label.TextAlignment));
+            }
 
-            var xOffset = ((Bounds.Size.Width - textBoundingBox.Size.Width) * alignmentOffset) - textBoundingBox.X;
-            var yOffset = ((Bounds.Size.Height - textBoundingBox.Size.Height) * alignmentOffset) - textBoundingBox.Y;
+            var xOffset = ((Label.Bounds.Size.Width - textBoundingBox.Size.Width) * alignmentOffset) - textBoundingBox.X;
+            var yOffset = ((Label.Bounds.Size.Height - textBoundingBox.Size.Height) * alignmentOffset) - textBoundingBox.Y;
             var locationOfTouchInTextContainer = new CGPoint(locationOfTouchInLabel.X - xOffset, locationOfTouchInLabel.Y - yOffset);
-            var characterIndex = layoutManager.GetCharacterIndex(locationOfTouchInTextContainer, textContainer, out var _);
-            var lineTapped = (int)(Math.Ceiling(locationOfTouchInLabel.Y / /*font.lineHeight*/1)) - 1;
-            var rightMostPointInLineTapped = new CGPoint(Bounds.Size.Width, /*font.lineHeight*/1 * lineTapped);
-            var charsInLineTapped = layoutManager.GetCharacterIndex(rightMostPointInLineTapped, textContainer, out var _);
 
-            //if (characterIndex < charsInLineTapped == null)
-            //{
-            //    return false;
-            //}
+            var characterIndex = layoutManager.GetCharacterIndex(locationOfTouchInTextContainer, textContainer, out _);
+            var lineTapped = (int)Math.Ceiling(locationOfTouchInLabel.Y / Label.Font.LineHeight) - 1;
+            var rightMostPointInLineTapped = new CGPoint(Label.Bounds.Size.Width, Label.Font.LineHeight * lineTapped);
+            var charsInLineTapped = layoutManager.GetCharacterIndex(rightMostPointInLineTapped, textContainer, out _);
 
-            var attributeName = UIStringAttributeKey.Link;
-            var attributeValue = AttributedString?.GetAttribute(attributeName, (nint)characterIndex, out var _);
+            if (characterIndex < charsInLineTapped)
+            {
+                return false;
+            }
+
+            var attributeValue = Label.AttributedText.GetAttribute(UIStringAttributeKey.Link, (nint)characterIndex, out _);
             if (attributeValue is null) return false;
 
-            if (attributeValue is not NSUrl url) return false;
+            if (attributeValue is not NSString str) return false;
 
-            View.LinkTapped.Raise(new EventArgs<string>(url.ToString()));
+            View.LinkTapped.Raise(new EventArgs<string>(str.ToString()));
 
-            return superBool;
+            return baseResult;
         }
 
         void RenderSpannableText()
