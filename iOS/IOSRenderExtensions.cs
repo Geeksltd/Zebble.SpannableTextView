@@ -5,7 +5,7 @@
     using System;
     using UIKit;
 
-    public static class IOSRenderExtentions
+    public static class IOSRenderExtensions
     {
         internal static void RenderSpannableStringStyle(this SpannableStringStyle style, TextView view, NSMutableAttributedString attributedString)
         {
@@ -47,7 +47,7 @@
             }
             catch (Exception ex)
             {
-                Log.For(typeof(IOSRenderExtentions)).Error(ex, $"Id: {view?.Id.Or("null")}, Text: {view?.Text.Or("null")}, Range: {style?.Range}");
+                Log.For(typeof(IOSRenderExtensions)).Error(ex, $"Id: {view?.Id.Or("null")}, Text: {view?.Text.Or("null")}, Range: {style?.Range}");
             }
         }
     }
