@@ -4,9 +4,9 @@ namespace Zebble
 {
     public class SpannableStringRange
     {
-        public int Start { get; set; }
+        public int Start { get; }
         public int End => Start + Length;
-        public int Length { get; set; }
+        public int Length { get; }
 
         public SpannableStringRange(int start, int length)
         {

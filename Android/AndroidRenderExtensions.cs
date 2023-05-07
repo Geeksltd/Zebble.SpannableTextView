@@ -2,6 +2,7 @@
 {
     using Android.Graphics;
     using System;
+    using Olive;
 
     public static class AndroidRenderExtensions
     {
@@ -44,12 +45,11 @@
                         }
 
                         break;
-                    default: break;
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception($"Failed to render the style. {ex.Message}. Type: {style.Type}, Range: {style.Range}, Length: {text.Length()}, Text: {view.Text}, SpannableText: {view.SpannableText}", ex);
+                Log.For(typeof(AndroidRenderExtensions)).Error(ex, $"Failed to render the style. {ex.Message}. Type: {style.Type}, Range: {style.Range}, Length: {text.Length()}, Text: {view.Text}, SpannableText: {view.SpannableText}");
             }
         }
     }
