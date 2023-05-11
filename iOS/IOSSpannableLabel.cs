@@ -19,6 +19,8 @@ namespace Zebble.IOS
         {
             if (View.ParsedText == null) return;
 
+            AttributedString = new NSMutableAttributedString(View.Text);
+
             foreach (var spannableStyle in View.ParsedText)
             {
                 spannableStyle.RenderSpannableStringStyle(View, AttributedString);
