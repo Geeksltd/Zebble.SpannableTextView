@@ -9,13 +9,12 @@
             View = view;
 
             view.SpannableTextChanged.HandleActionOn(Thread.UI, RenderSpannableText);
-
             RenderSpannableText();
         }
 
         void RenderSpannableText()
         {
-            if (View.ParsedText == null) return;
+            if (View?.ParsedText == null) return;
 
             var spannableText = new Android.Text.SpannableString(View.Text);
             foreach (var spannableStyle in View.ParsedText)
