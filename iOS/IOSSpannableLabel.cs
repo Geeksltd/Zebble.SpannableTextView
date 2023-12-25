@@ -17,7 +17,7 @@ namespace Zebble.IOS
 
         void RenderSpannableText()
         {
-            if (View is null || View.ParsedText == null) return;
+            if (View?.ParsedText == null) return;
 
             AttributedString = new NSMutableAttributedString(View.Text);
 

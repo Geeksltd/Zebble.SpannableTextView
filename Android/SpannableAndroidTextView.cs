@@ -14,7 +14,7 @@
 
         void RenderSpannableText()
         {
-            if (View is null || View.ParsedText == null) return;
+            if (View?.ParsedText == null) return;
 
             var spannableText = new Android.Text.SpannableString(View.Text);
             foreach (var spannableStyle in View.ParsedText)

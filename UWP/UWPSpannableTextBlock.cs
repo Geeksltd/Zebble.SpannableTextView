@@ -17,7 +17,7 @@ namespace Zebble.UWP
 
         void RenderSpannableText()
         {
-            if (View is null || View.ParsedText == null) return;
+            if (View?.ParsedText == null) return;
 
             Result.Text = "";
             foreach (var spannableStyle in View.ParsedText)
