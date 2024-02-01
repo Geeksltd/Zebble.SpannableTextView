@@ -12,6 +12,10 @@
             try
             {
                 var range = new NSRange(style.Range.Start, style.Range.Length);
+
+                // Concurrency issue
+                if (attributedString.Length < range.Location + range.Length) return;
+
                 switch (style.Type)
                 {
                     case SpannableStringTypes.B:
