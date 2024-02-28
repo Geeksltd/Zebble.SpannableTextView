@@ -4,13 +4,13 @@
     using System.Threading.Tasks;
     using Zebble.AndroidOS;
 
-    internal class SpanableTextViewRenderer : INativeRenderer
+    internal class SpannableTextViewRenderer : INativeRenderer
     {
         SpannableTextView View;
         SpannableAndroidTextView Result;
 
         [Preserve]
-        public SpanableTextViewRenderer() { }
+        public SpannableTextViewRenderer() { }
 
         public Task<Android.Views.View> Render(Renderer render)
         {

@@ -4,7 +4,7 @@
     using UIKit;
     using Zebble.IOS;
 
-    internal class SpanableTextViewRenderer : INativeRenderer
+    internal class SpannableTextViewRenderer : INativeRenderer
     {
         SpannableTextView View;
         IOSSpannableLabel Result;

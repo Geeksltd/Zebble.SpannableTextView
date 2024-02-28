@@ -4,7 +4,7 @@
     using Windows.UI.Xaml;
     using Zebble.UWP;
 
-    internal class SpanableTextViewRenderer : INativeRenderer
+    internal class SpannableTextViewRenderer : INativeRenderer
     {
         SpannableTextView View;
         UWPSpannableTextBlock Result;

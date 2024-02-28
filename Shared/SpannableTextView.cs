@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using Olive;
 
-    public class SpannableTextView : TextView, IRenderedBy<SpanableTextViewRenderer>
+    public class SpannableTextView : TextView, IRenderedBy<SpannableTextViewRenderer>
     {
         string spannableText = string.Empty;
         internal List<SpannableStringStyle> ParsedText;
