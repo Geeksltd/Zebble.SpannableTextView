@@ -1,6 +1,7 @@
 ﻿namespace Zebble
 {
     using Android.Runtime;
+    using System;
     using System.Threading.Tasks;
     using Zebble.AndroidOS;
 
@@ -24,6 +25,7 @@
         {
             Result?.Dispose();
             Result = null;
+			GC.SuppressFinalize(this);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace Zebble
 {
+    using System;
     using System.Threading.Tasks;
     using UIKit;
     using Zebble.IOS;
@@ -17,6 +18,9 @@
             return Result;
         }
 
-        public void Dispose() => Result.Dispose();
+        public void Dispose() {
+			Result.Dispose();
+			GC.SuppressFinalize(this);
+		}
     }
 }
