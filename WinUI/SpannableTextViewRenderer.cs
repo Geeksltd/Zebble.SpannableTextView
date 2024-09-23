@@ -2,18 +2,18 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Windows.UI.Xaml;
-    using Zebble.UWP;
+    using Microsoft.UI.Xaml;
+    using Zebble.WinUI;
 
     internal class SpannableTextViewRenderer : INativeRenderer
     {
         SpannableTextView View;
-        UWPSpannableTextBlock Result;
+        WinUISpannableTextBlock Result;
 
         Task<FrameworkElement> INativeRenderer.Render(Renderer renderer)
         {
             View = (SpannableTextView)renderer.View;
-            Result = new UWPSpannableTextBlock(renderer);
+            Result = new WinUISpannableTextBlock(renderer);
 
             return Result.Render(renderer);
         }
