@@ -1,12 +1,11 @@
-﻿namespace Zebble.WinUI
+﻿namespace Zebble.UWP
 {
-    using Microsoft.UI.Text;
-    using Olive;
     using Windows.UI.Text;
-    using doc = Microsoft.UI.Xaml.Documents;
-    using media = Microsoft.UI.Xaml.Media;
+    using doc = Windows.UI.Xaml.Documents;
+    using media = Windows.UI.Xaml.Media;
+    using Olive;
 
-    public static class WinUIRenderExtensions
+    public static class UWPRenderExtensions
     {
         internal static doc.Span RenderSpannableStringStyle(this SpannableStringStyle style)
         {
